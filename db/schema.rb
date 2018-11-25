@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2018_11_25_215833) do
 
   create_table "goods", force: :cascade do |t|
-    t.text "good"
+    t.text "name"
     t.integer "2017-03-01"
     t.integer "2017-03-02"
     t.integer "2017-03-03"
