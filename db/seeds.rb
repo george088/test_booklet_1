@@ -31,9 +31,8 @@
 
 require 'roo'
 
-puts "Importing Facilities..."
 spreadsheet = Roo::Spreadsheet.open('app/assets/data/goods.xlsx')
-# spreadsheet.each_row do |row|
-#   puts row.inspect # Array of Excelx::Cell objects
-# end
-puts spreadsheet.row(2)
+spreadsheet.each_row do |row|
+  puts row.inspect # Array of Excelx::Cell objects
+end
+puts spreadsheet.row(1)

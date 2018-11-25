@@ -1,15 +1,10 @@
 class CreateGoods < ActiveRecord::Migration[5.2]
   def change
     create_table :goods do |t|
-      t.string  :name
-      2017-03-01
-      2017-03-21
-      20170301.upto(20170321) do |i|
+      t.text  :good
+      Date.parse('2017-03-01').upto(Date.parse('2017-03-21')) do |date|
 
-        t.string  :label
-        t.text    :value
-        t.string  :type
-        t.integer :position
+        t.integer  date.to_s.to_sym
       end
 
       t.timestamps
