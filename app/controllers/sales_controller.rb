@@ -4,9 +4,13 @@ class SalesController < ApplicationController
 
     # render json: Good.find(1).day.where(date: '2017-03-01')
     #"created_at >= ? AND created_at <= ?", start_date, end_date
-    date1 = Date.parse(params[:from])
-    date2 = Date.parse(params[:to])
     
+    return render json: "error from" unless date_validate(params[:from]) && date_validate(params[:to])
+
+    date1 = Date.parse(params[:from])
+    date2 = Date.parse(params[:to]) 
+    
+    return render json: "sis'ki" if date1 > date2 
     # работает
     # render json: Good.joins(:day).where(days: {:date => date1..date2})#date: FROM '' TO '2017-03-02'}) #days {date: '2017-03-01'})
     # render json: Day.where(:date => date1..date2).select("good_id as good_id, sum(revenue) as total_revenue").group("good_id")
@@ -29,4 +33,10 @@ class SalesController < ApplicationController
 
     render json: hh
   end
+
+  private
+  def date_validate date
+    Date.parse date rescue nil
+  end
+
 end
