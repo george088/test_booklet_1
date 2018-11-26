@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2018_11_26_112719) do
 
   create_table "days", force: :cascade do |t|
-    t.string "date"
+    t.date "date"
     t.decimal "revenue"
     t.integer "good_id"
     t.datetime "created_at", null: false
