@@ -4,8 +4,8 @@ class SalesController < ApplicationController
 
     # render json: Good.find(1).day.where(date: '2017-03-01')
     #"created_at >= ? AND created_at <= ?", start_date, end_date
-    date1 = Date.new(2017,3,1)
-    date2 = Date.new(2017,3,10)
+    date1 = Date.parse(params[:from])
+    date2 = Date.parse(params[:to])
     
     # работает
     # render json: Good.joins(:day).where(days: {:date => date1..date2})#date: FROM '' TO '2017-03-02'}) #days {date: '2017-03-01'})
