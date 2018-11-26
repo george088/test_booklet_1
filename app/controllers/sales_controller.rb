@@ -12,10 +12,9 @@ class SalesController < ApplicationController
       return render json: hh
     end
 
-
     date_from = Date.parse(params[:from])
     date_to = Date.parse(params[:to]) 
-    
+
     unless !(date_from > date_to )
       hh = {}
       hh['status'] = :unprocessable_entity
