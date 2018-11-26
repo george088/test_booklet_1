@@ -1,4 +1,5 @@
 class SalesController < ApplicationController
+  
   def sales
 
     # render json: Good.find(1).day.where(date: '2017-03-01')
@@ -23,8 +24,9 @@ class SalesController < ApplicationController
     hh['goods'] = items.collect{|x| [x.id, x.title, x.revenue.round(2)] }
     sum = 0
     items.collect{|x| sum += x.revenue.round(2)}
-    
+
     hh['total_revenue'] = sum.round(2)
-  render json: hh
+
+    render json: hh
   end
 end
