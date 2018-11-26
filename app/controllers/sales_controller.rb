@@ -20,8 +20,11 @@ class SalesController < ApplicationController
     hh = {}
     hh['from'] = date1
     hh['to'] = date2
-    hh['goods'] = items.collect{|x| [x.id, x.title, x.revenue] }
-    hh['total_revenue'] = items.sum(revenue)
+    hh['goods'] = items.collect{|x| [x.id, x.title, x.revenue.round(2)] }
+    sum = 0
+    items.collect{|x| sum += x.revenue.round(2)}
+    
+    hh['total_revenue'] = sum.round(2)
   render json: hh
   end
 end
