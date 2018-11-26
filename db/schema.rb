@@ -10,6 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_11_26_112719) do
+
+  create_table "days", force: :cascade do |t|
+    t.string "date"
+    t.integer "revenue"
+    t.integer "good_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["good_id"], name: "index_days_on_good_id"
+  end
+
+  create_table "goods", force: :cascade do |t|
+    t.text "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

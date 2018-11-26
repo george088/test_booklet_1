@@ -46,8 +46,7 @@ puts spreadsheet.row(2)
 
 (2..spreadsheet.last_row).each do |i|
   Good.create(
-    title: spreadsheet.row(i)[0],
-    2017-03-01 => spreadsheet.row(i)[1],
+    title: spreadsheet.row(i)[0]),
     2017-03-02 => spreadsheet.row(i)[2],
     2017-03-03 => spreadsheet.row(i)[3],
     2017-03-04 => spreadsheet.row(i)[4],
