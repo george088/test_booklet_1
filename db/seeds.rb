@@ -32,63 +32,14 @@
 require 'roo'
 
 spreadsheet = Roo::Spreadsheet.open('app/assets/data/goods.xlsx')
-# spreadsheet.each_row do |row|
-#   puts row.inspect # Array of Excelx::Cell objects
-# end
-# puts spreadsheet.row(1)
-header =  spreadsheet.first_row
-# puts spreadsheet.row(header)
-puts row = Hash[header, spreadsheet.row(2)]
-puts row.inspect 
-
-puts 'End'
-puts spreadsheet.row(2)
 
 (2..spreadsheet.last_row).each do |i|
   Good.create(title: spreadsheet.row(i)[0])
 
   j = 1
   Date.parse('2017-03-01').upto(Date.parse('2017-03-21')) do |date|
-    
+
     Good.find(i-1).day.create(date: date.to_s, revenue: spreadsheet.row(i)[j])
     j = j + 1
-    # t.string :date
-    # t.integer :revenue
   end
 end
-
-# (2..spreadsheet.last_row).each do |i|
-
-
-#   row = Hash[header, spreadsheet.row(i)]
-#   # Good.create
-#   # Good = find_by_id(row["id"]) || new
-#   Good.attribute = row.to_hash.slice(*accessible_attributes)
-#   Good.save!
-#   # puts row
-# end
-
-# (2..spreadsheet.last_row).each do |i|
-#   row = Hash[header, spreadsheet.row(i)]
-#   Good.create
-#   # product = find_by_id(row["id"]) || new
-#   Good.attributes = row.to_hash.slice(*accessible_attributes)
-#   Good.save!
-#   # puts row
-# end
-
-# CSV.foreach('SeedsSpill.csv') do |row|
-#   url = row[0]
-#   reported = row[1]
-#   incident = row[2]
-#   county = row[3]
-#   lat = row[4].to_f
-#   long = row[5].to_f
-#   contaminant = row[6]
-#   volume = row[7].to_i
-#   units = row[8]
-#   contained = row[9]
-#   user_id = row[10].to_i
-#   Spill.create(IncidentURL: url, DateReported: reported, DateIncident: incident, County: county, Latitude: lat, Longitude: long, Contaminant: contaminant, Volume: volume, Units: units, Contained: contained, user_id: user_id,) 
-# end
-# puts "done"

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_112719) do
 
   create_table "days", force: :cascade do |t|
     t.string "date"
-    t.integer "revenue"
+    t.decimal "revenue"
     t.integer "good_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
