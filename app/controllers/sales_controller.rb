@@ -17,6 +17,5 @@ class SalesController < ApplicationController
              .select('goods.id AS id, goods.title AS title, SUM(days.revenue) AS revenue')
              .group('goods.id')
   render json: items.collect{|x| [x.id, x.title, x.revenue] }
-# => [[2, "Каталог 2", 2], [1, "Каталог 1", 0], [3, "Каталог 3", 1]]
   end
 end
