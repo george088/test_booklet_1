@@ -14,13 +14,14 @@ class SalesController < ApplicationController
     
     items = Good
              .left_joins(:day)
+             .where(days: {:date => date1..date2})
              .select('goods.id AS id, goods.title AS title, SUM(days.revenue) AS revenue')
              .group('goods.id')
     hh = {}
     hh['from'] = date1
     hh['to'] = date2
     hh['goods'] = items.collect{|x| [x.id, x.title, x.revenue] }
-    # hh['total_revenue'] = items.sum(revenue)
+    hh['total_revenue'] = items.sum(revenue)
   render json: hh
   end
 end
