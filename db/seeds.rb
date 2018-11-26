@@ -45,29 +45,29 @@ puts 'End'
 puts spreadsheet.row(2)
 
 (2..spreadsheet.last_row).each do |i|
-  Spill.create(
-    title: spreadsheet.row(i)[0]
-    2017-03-01: spreadsheet.row(i)[1],
-    2017-03-02: spreadsheet.row(i)[2],
-    2017-03-03: spreadsheet.row(i)[3],
-    2017-03-04: spreadsheet.row(i)[4],
-    2017-03-05: spreadsheet.row(i)[5],
-    2017-03-06: spreadsheet.row(i)[6],
-    2017-03-07: spreadsheet.row(i)[7],
-    2017-03-08: spreadsheet.row(i)[8],
-    2017-03-09: spreadsheet.row(i)[9],
-    2017-03-10: spreadsheet.row(i)[10],
-    2017-03-11: spreadsheet.row(i)[11],
-    2017-03-12: spreadsheet.row(i)[12],
-    2017-03-13: spreadsheet.row(i)[13],
-    2017-03-14: spreadsheet.row(i)[14],
-    2017-03-15: spreadsheet.row(i)[15],
-    2017-03-16: spreadsheet.row(i)[16],
-    2017-03-17: spreadsheet.row(i)[17],
-    2017-03-18: spreadsheet.row(i)[18],
-    2017-03-19: spreadsheet.row(i)[19],
-    2017-03-20: spreadsheet.row(i)[20],
-    2017-03-21: spreadsheet.row(i)[21] 
+  Good.create(
+    title: spreadsheet.row(i)[0],
+    2017-03-01 => spreadsheet.row(i)[1],
+    2017-03-02 => spreadsheet.row(i)[2],
+    2017-03-03 => spreadsheet.row(i)[3],
+    2017-03-04 => spreadsheet.row(i)[4],
+    2017-03-05 => spreadsheet.row(i)[5],
+    2017-03-06 => spreadsheet.row(i)[6],
+    2017-03-07 => spreadsheet.row(i)[7],
+    2017-03-08 => spreadsheet.row(i)[8],
+    2017-03-09 => spreadsheet.row(i)[9],
+    2017-03-10 => spreadsheet.row(i)[10],
+    2017-03-11 => spreadsheet.row(i)[11],
+    2017-03-12 => spreadsheet.row(i)[12],
+    2017-03-13 => spreadsheet.row(i)[13],
+    2017-03-14 => spreadsheet.row(i)[14],
+    2017-03-15 => spreadsheet.row(i)[15],
+    2017-03-16 => spreadsheet.row(i)[16],
+    2017-03-17 => spreadsheet.row(i)[17],
+    2017-03-18 => spreadsheet.row(i)[18],
+    2017-03-19 => spreadsheet.row(i)[19],
+    2017-03-20 => spreadsheet.row(i)[20],
+    2017-03-21 => spreadsheet.row(i)[21] 
     )
 end
 
