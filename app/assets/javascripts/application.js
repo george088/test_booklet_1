@@ -16,5 +16,14 @@
 //= require_tree .
 function refresh() 
 {
-  alert('chech')
+  $.ajax({
+    url: "sales",
+    type: "GET",
+    dataType:"json",
+    data: {from: $('#date_from').val(), to: $('#date_to').val()},
+    cache: false,
+    success: function(response){
+      alert(response)	
+    }
+  });
 }
