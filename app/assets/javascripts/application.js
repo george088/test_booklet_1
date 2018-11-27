@@ -26,8 +26,7 @@ function refresh()
       console.log(response.goods[0]);
 
       for(var i = 0; i < response.goods.length; i++) {
-        $('#table_title').append('<tr><td>' + response.goods[i][1] + '</td><td>' +  
-        '</td><td>' + response.goods[i][2] + '</td><tr>');
+        $('#table_title').append('<tr><td>' + response.goods[i][1] + '</td><td>' + response.goods[i][2] + '</td></tr>');
     }
 
     }
