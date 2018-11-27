@@ -56,7 +56,7 @@ class SalesController < ApplicationController
   def html_sales 
   end
 
-  def sales
+  def api_sales
     # render json: Good.find(1).day.where(date: '2017-03-01')
     #"created_at >= ? AND created_at <= ?", start_date, end_date
     
