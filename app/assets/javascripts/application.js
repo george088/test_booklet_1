@@ -23,12 +23,12 @@ function refresh()
     data: {from: $('#date_from').val(), to: $('#date_to').val()},
     cache: false,
     success: function(response){
-      console.log(response.goods[0]);
+      console.log(response);
 
       for(var i = 0; i < response.goods.length; i++) {
         $('#table_title').append('<tr><td>' + response.goods[i][1] + '</td><td>' + response.goods[i][2] + '</td></tr>');
     }
-
+    $('#table_title').append('<tr><td>' + 'Total Revenue' + '</td><td>' + response.total_revenue + '</td></tr>');
     }
   });
 }
