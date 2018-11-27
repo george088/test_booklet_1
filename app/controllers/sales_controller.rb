@@ -1,10 +1,62 @@
 class SalesController < ApplicationController
+  def show
+    return redirect_to sales_path unless Good.exists?(params[:id])
+
+    @item = Good.find(params[:id])
+  end
+
+  def edit
+    @item = Good.find(params[:id])
+  end
   
+  def update
+    @item = Good.find(params[:id])
+
+    if @item.update(good_params_permited)
+      redirect_to @item 
+    else
+      render action: 'edit'
+    end
+  end
+
+  def new
+  end
+
+  def create
+    @item = Good.new(good_params_permited)
+
+    if @item.save
+      redirect_to @item 
+    else
+      render action: 'new'
+    end
+  end
+
+  def index
+    @items = Good.all
+  end
+
+  def destroy
+    @item = Good.find(params[:id])
+
+    if @item.destroy 
+    else
+    end
+  end
+
+  private
+
+    def good_params_permited
+      params.require(:good).permit(:title)
+    end
+
+
+
+
   def html_sales 
   end
 
   def sales
-
     # render json: Good.find(1).day.where(date: '2017-03-01')
     #"created_at >= ? AND created_at <= ?", start_date, end_date
     
