@@ -24,11 +24,14 @@ function refresh()
     cache: false,
     success: function(response){
       console.log(response);
-
+      $('#table_title').empty()
+      
       for(var i = 0; i < response.goods.length; i++) {
         $('#table_title').append('<tr><td>' + response.goods[i][1] + '</td><td>' + response.goods[i][2] + '</td></tr>');
+      }
+      
+      $('#table_title').append('<tr><td>' + 'Total Revenue' + '</td><td>' + response.total_revenue + '</td></tr>');
     }
-    $('#table_title').append('<tr><td>' + 'Total Revenue' + '</td><td>' + response.total_revenue + '</td></tr>');
-    }
+
   });
 }
