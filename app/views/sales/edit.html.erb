@@ -1,0 +1,21 @@
+<h1>  #<%= @article[:id] %> </h1>
+
+<%= form_for :article, url: article_path, method: :put do |f|%>
+  <p>
+    <h3> <%= f.label :title %> </h3> 
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <h3> <%= f.label :text %> </h3> 
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+  ||
+  <%= form_for :article, url: article_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
+    <p>
+      <%= f.submit 'delete' %>
+    </p>
+  <% end %>
+<% end %>
