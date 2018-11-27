@@ -1,0 +1,10 @@
+<h2> Все товары <small> <em><%= link_to 'Создать', new_sale_path %></em></small></h2> 
+
+<% @items.each do |item| %>
+    <p><b> Title #<%= item[:id] %>: <%= link_to item[:title], sale_path(item) %> </b> 
+        <small><em>
+                ( <%= link_to 'edit', edit_sale_path(item) %> | <%= link_to 'delete', sale_path(item), method: :delete, data: { confirm: 'Are you sure?' } %> )
+        </em></small><br/>
+    </p>
+   <hr>
+<% end %>
