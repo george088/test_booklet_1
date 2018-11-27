@@ -37,8 +37,8 @@ class SalesController < ApplicationController
              .select('goods.id AS id, goods.title AS title, SUM(days.revenue) AS revenue')
              .group('goods.id')
     hh = {}
-    hh['from'] = date1
-    hh['to'] = date2
+    hh['from'] = date_from
+    hh['to'] = date_to
     hh['goods'] = items.collect{|x| [x.id, x.title, x.revenue.round(2)] }
     sum = 0
     items.collect{|x| sum += x.revenue.round(2)}
