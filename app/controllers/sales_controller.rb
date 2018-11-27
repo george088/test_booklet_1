@@ -44,15 +44,6 @@ class SalesController < ApplicationController
     end
   end
 
-  private
-
-    def good_params_permited
-      params.require(:good).permit(:title)
-    end
-
-
-
-
   def html_sales 
   end
 
@@ -99,11 +90,14 @@ class SalesController < ApplicationController
 
     render json: hh
   end
-  
 
-    private
+  private
 
     def date_validate date
       Date.parse date rescue nil
+    end
+
+    def good_params_permited
+      params.require(:good).permit(:title)
     end
 end
