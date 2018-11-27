@@ -23,7 +23,13 @@ function refresh()
     data: {from: $('#date_from').val(), to: $('#date_to').val()},
     cache: false,
     success: function(response){
-      alert(response)	
+      console.log(response.goods[0]);
+
+      for(var i = 0; i < response.goods.length; i++) {
+        $('#table_title').append('<tr><td>' + data.goods[i][1] + '</td><td>' +  
+        '</td><td>' + data.goods[i][2] + '</td><tr>');
+    }
+
     }
   });
 }
