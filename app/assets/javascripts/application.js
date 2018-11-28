@@ -17,7 +17,7 @@
 function refresh() 
 {
   $.ajax({
-    url: "api_sales",
+    url: "sales",
     type: "GET",
     dataType:"json",
     data: {from: $('#date_from').val(), to: $('#date_to').val()},
