@@ -1,4 +1,4 @@
-class SalesController < ApplicationController
+class GoodController < ApplicationController
   def show
     return redirect_to sales_path unless Good.exists?(params[:id])
 
@@ -99,5 +99,4 @@ class SalesController < ApplicationController
 
     def good_params_permited
       params.require(:goods).permit(:title)
-    end
 end
