@@ -11,4 +11,21 @@
         <%= f.submit 'Удалить' %>
     <% end %>
   </p>
+
+<hr/>
+
+  <%= form_for([@item, Day.new]) do |f|%>
+  <p>
+    <%= f.label :day %> 
+    <%= f.text_field :revenue, value: @item[:revenue] %>
+  </p>
+  <p>
+    <%= f.submit 'Сохранить' %>
+    <%= form_for :goods, url: sale_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
+        <%= f.submit 'Удалить' %>
+    <% end %>
+  </p>
 <% end %>
+
+<% end %>
+
