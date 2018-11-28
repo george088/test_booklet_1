@@ -1,0 +1,2 @@
+module ApiGoodsHelper
+end

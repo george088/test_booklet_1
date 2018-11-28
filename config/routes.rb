@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :goods do
     resources :days #, only: [:edit, :create]
   end
+
+  resources :api_goods
 end
