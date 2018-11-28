@@ -3,11 +3,11 @@
 <%= form_for :day, url: good_days_path, method: :put do |f|%>
   <p>
     <%= f.label :date %> 
-    <%= f.text_field :date, value: @item.day[:title] %>
+    <%= f.text_field :date, value: @day[:date] %>
   </p>
   <p>
     <%= f.label :revenue %> 
-    <%= f.text_field :revenue %>
+    <%= f.text_field :revenue, value: @day[:revenue] %>
   </p>
   <p>
     <%= f.submit 'Сохранить' %>
