@@ -37,15 +37,15 @@
 
 <ol>
   <% @item.day.each do |day| %>
+      Дата: <strong><%= day[:date] %></strong> <br/>
 
-      <p>#<%= day[:id] %> </p>
-      Дата: <%= day[:date] %> <br/>
-
-      Revenue: <em><%= day[:revenue] %> </em> <br/> Создано: <%= day[:created_at] %>
+      Revenue: <strong><%= day[:revenue] %> </strong> <br/> Создано: <%= day[:created_at] %>
       
        <small><em>
                 ( <%= link_to 'edit', edit_good_day_path(@item, day) %> | <%= link_to 'delete', good_day_path(@item, day), method: :delete, data: { confirm: 'Are you sure?' } %> )
         </em></small><br/>
       </p>
+
+      <hr/>
   <% end %>
 </ol>
