@@ -16,7 +16,7 @@
       Revenue: <em><%= item[:revenue] %> </em> <br/> Создано: <%= item[:created_at] %>
       
        <small><em>
-                ( <%= link_to 'edit', edit_good_days_path(item) %> | <%= link_to 'delete', good_days_path(item), method: :delete, data: { confirm: 'Are you sure?' } %> )
+                ( <%= link_to 'edit', edit_good_day_path(@item, item) %> | <%= link_to 'delete', good_day_path(@item, item), method: :delete, data: { confirm: 'Are you sure?' } %> )
         </em></small><br/>
       </p>
   <% end %>
