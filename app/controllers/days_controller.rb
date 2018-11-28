@@ -8,6 +8,6 @@ class DaysController < ApplicationController
   private
 
   def day_params_permited
-    params.require(:days).permit(:date, :revenue)
+    params.require(:day).permit(:date, :revenue)
   end
 end

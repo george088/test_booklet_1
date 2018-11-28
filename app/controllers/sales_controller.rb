@@ -98,6 +98,6 @@ class SalesController < ApplicationController
     end
 
     def good_params_permited
-      params.require(:goods).permit(:title)
+      params.require(:good).permit(:title)
     end
 end
