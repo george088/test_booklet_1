@@ -7,13 +7,46 @@
   </p>
   <p>
     <%= f.submit 'Сохранить' %>
-
+    <%= form_for :good, url: good_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
+      <%= f.submit 'Удалить' %>
+    <% end %>
   </p>
 <hr/>
 
-
 <% end %>
+</hr>
 
-    <%= form_for :good, url: good_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
-        <%= f.submit 'Удалить' %>
-    <% end %>
+<h5> Add dates and revenue </h5>
+<%= form_for([@item, Day.new]) do |f|%>
+<%# @article.comments.build -- при рендере страницы в момент формирования формы 
+он создаёт нулевую запись в @article.comments #%>
+    <p>
+      <%= f.label :'Дата' %> <br/>
+      <%= f.text_field :date, placeholder: 'yyyy-mm-dd' %>
+    </p>
+    
+    <p>
+      <%= f.label :revenue %> <br/>
+      <%= f.text_field :revenue %>
+    </p>
+
+    <p>
+      <%= f.submit 'Добавить запись' %>
+    </p>
+<% end %>
+<hr/>
+
+<ol>
+  <% @item.day.each do |item| %>
+
+      <p>#<%= item[:id] %> </p>
+      Дата: <%= item[:date] %> <br/>
+
+      Revenue: <em><%= item[:revenue] %> </em> <br/> Создано: <%= item[:created_at] %>
+      
+       <small><em>
+                ( <%= link_to 'edit', edit_good_days_path(item) %> | <%= link_to 'delete', good_days_path(item), method: :delete, data: { confirm: 'Are you sure?' } %> )
+        </em></small><br/>
+      </p>
+  <% end %>
+</ol>

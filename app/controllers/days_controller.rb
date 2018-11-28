@@ -5,6 +5,10 @@ class DaysController < ApplicationController
     redirect_to article_path(@item)
   end
 
+  def edit
+    
+  end
+
   private
 
   def day_params_permited

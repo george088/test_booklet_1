@@ -1,11 +1,13 @@
 class GoodsController < ApplicationController
   def show
-    return redirect_to sales_path unless Good.exists?(params[:id])
+    return redirect_to goods_path unless Good.exists?(params[:id])
 
     @item = Good.find(params[:id])
   end
 
   def edit
+    return redirect_to goods_path unless Good.exists?(params[:id])
+
     @item = Good.find(params[:id])
   end
   

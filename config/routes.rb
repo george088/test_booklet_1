@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'html_sales' => 'goods#html_sales'
 
   resources :goods do
-    resource :days, only: [:create]
+    resource :days, only: [:create, :edit]
   end
 end
