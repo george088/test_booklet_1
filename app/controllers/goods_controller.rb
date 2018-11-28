@@ -1,4 +1,4 @@
-class GoodController < ApplicationController
+class GoodsController < ApplicationController
   def show
     return redirect_to sales_path unless Good.exists?(params[:id])
 

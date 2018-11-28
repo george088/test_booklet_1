@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'api_sales' => 'sales#api_sales'
   get 'html_sales' => 'sales#html_sales'
 
-  resources :sales do 
+  resources :good do 
     resource :days, only: [:create]
   end
 end
