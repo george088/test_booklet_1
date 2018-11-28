@@ -1,0 +1,11 @@
+<h3> Добавление нового товара </h3>
+
+<%= form_for :good, url: goods_path do |f|%>
+  <p>
+    <%= f.label :'Название' %> <br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.submit 'Добавить товар' %>
+  </p>
+<% end %>
