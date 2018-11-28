@@ -8,15 +8,15 @@
 
 <h5> Revenue </h5>
 <ol>
-  <% @item.day.each do |item| %>
+  <% @item.day.each do |day| %>
 
-      <p>#<%= item[:id] %> </p>
-      Дата: <%= item[:date] %> <br/>
+      <p>#<%= day[:id] %> </p>
+      Дата: <%= day[:date] %> <br/>
 
-      Revenue: <em><%= item[:revenue] %> </em> <br/> Создано: <%= item[:created_at] %>
+      Revenue: <em><%= day[:revenue] %> </em> <br/> Создано: <%= day[:created_at] %>
       
        <small><em>
-                ( <%= link_to 'edit', edit_good_day_path(@item, item) %> | <%= link_to 'delete', good_day_path(@item, item), method: :delete, data: { confirm: 'Are you sure?' } %> )
+                ( <%= link_to 'edit', edit_good_day_path(@item, day) %> | <%= link_to 'delete', good_day_path(@item, day), method: :delete, data: { confirm: 'Are you sure?' } %> )
         </em></small><br/>
       </p>
   <% end %>
