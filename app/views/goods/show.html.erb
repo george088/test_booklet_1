@@ -1,0 +1,23 @@
+<h5>Id # <%= @item[:id]%><small><em> 
+    (<%= link_to 'edit', edit_good_path(@item) %> | <%= link_to 'delete', good_path(@item), method: :delete, data: { confirm: 'Are you sure?' } %>)
+</small>
+</em></h5> 
+
+<h4> Title is <em><%= @item[:title] %> </em> </h4>
+<hr/>
+
+<h5> Revenue </h5>
+<ol>
+  <% @item.day.each do |item| %>
+
+      <p>#<%= item[:id] %> </p>
+      Дата: <%= item[:date] %> <br/>
+
+      Revenue: <em><%= item[:revenue] %> </em> <br/> Создано: <%= item[:created_at] %>
+      
+       <small><em>
+                ( <%= link_to 'edit', edit_good_days_path(item) %> | <%= link_to 'delete', good_days_path(item), method: :delete, data: { confirm: 'Are you sure?' } %> )
+        </em></small><br/>
+      </p>
+  <% end %>
+</ol>
