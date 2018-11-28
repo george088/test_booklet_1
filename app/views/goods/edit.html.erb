@@ -1,6 +1,6 @@
 <h5> Id #<%= @item[:id] %> </h5>
 
-<%= form_for :goods, url: sale_path, method: :put do |f|%>
+<%= form_for :good, url: good_path, method: :put do |f|%>
   <p>
     <%= f.label :title %> 
     <%= f.text_field :title, value: @item[:title] %>
@@ -14,6 +14,6 @@
 
 <% end %>
 
-    <%= form_for :goods, url: sale_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
+    <%= form_for :good, url: good_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
         <%= f.submit 'Удалить' %>
     <% end %>
