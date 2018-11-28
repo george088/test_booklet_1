@@ -6,21 +6,41 @@
 <h4> Название товара: <em><%= @item[:title] %> </em> </h4>
 <hr/>
 
-<h5> Revenue </h5>
+<% if @item.day.size == 0 %>
+    
+<h5> Добавление даты и revenue </h5>
+    <%= form_for([@item, Day.new]) do |f|%>
+    <%# @article.comments.build -- при рендере страницы в момент формирования формы 
+    он создаёт нулевую запись в @article.comments #%>
+        <p>
+        <%= f.label :'Дата' %> <br/>
+        <%= f.text_field :date, placeholder: 'yyyy-mm-dd' %>
+        </p>
+        
+        <p>
+        <%= f.label :revenue %> <br/>
+        <%= f.text_field :revenue %>
+        </p>
 
+        <p>
+        <%= f.submit 'Добавить запись' %>
+        </p>
+    <% end %>
+    <hr/>
+<% else %>
+    <h5> Revenue </h5>
+    <ol>
+    <% @item.day.each do |day| %>
+        Дата: <strong><%= day[:date] %></strong> <br/>
 
+        Revenue: <strong><%= day[:revenue] %> </strong> <br/> Создано: <%= day[:created_at] %>
+        
+        <small><em>
+                    ( <%= link_to 'edit', edit_good_day_path(@item, day) %> | <%= link_to 'delete', good_day_path(@item, day), method: :delete, data: { confirm: 'Are you sure?' } %> )
+            </em></small><br/>
+        </p>
 
-<ol>
-  <% @item.day.each do |day| %>
-      Дата: <strong><%= day[:date] %></strong> <br/>
-
-      Revenue: <strong><%= day[:revenue] %> </strong> <br/> Создано: <%= day[:created_at] %>
-      
-       <small><em>
-                ( <%= link_to 'edit', edit_good_day_path(@item, day) %> | <%= link_to 'delete', good_day_path(@item, day), method: :delete, data: { confirm: 'Are you sure?' } %> )
-        </em></small><br/>
-      </p>
-
-      <hr/>
-  <% end %>
-</ol>
+        <hr/>
+    <% end %>
+    </ol>
+<% end %>
