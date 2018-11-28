@@ -99,4 +99,5 @@ class GoodsController < ApplicationController
 
     def good_params_permited
       params.require(:goods).permit(:title)
+    end
 end
