@@ -7,6 +7,7 @@ class DaysController < ApplicationController
 
   def edit
     @item = Good.find(params[:good_id])
+    @day = Day.find(params[:id])
   end
 
   private

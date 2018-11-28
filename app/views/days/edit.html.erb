@@ -1,13 +1,17 @@
-<h5> Название товара #<%= @item[:title] %> </h5>
+<h5> Название товара: <%= @item[:title] %> </h5>
 
 <%= form_for :day, url: good_days_path, method: :put do |f|%>
   <p>
     <%= f.label :date %> 
-    <%= f.text_field :date, value: @item.days[:date] %>
+    <%= f.text_field :date, value: @item.day[:title] %>
+  </p>
+  <p>
+    <%= f.label :revenue %> 
+    <%= f.text_field :revenue %>
   </p>
   <p>
     <%= f.submit 'Сохранить' %>
-    <%= form_for :day, url: good_days_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
+    <%= form_for :day, url: good_day_path, method: :delete, data: { confirm: 'Are you sure?'} do |f|%>
       <%= f.submit 'Удалить' %>
     <% end %>
   </p>
