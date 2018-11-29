@@ -13,8 +13,13 @@ class ApiGoodsController < ApplicationController
   
     # GET /Goods/:id
     def show
-
-      json_response(Good.find(params[:id]))
+      items = Good
+      .left_joins(:day)
+      .where('days.good_id == ?', params[:id])
+      .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
+      hh = {}
+      hh['goods'] =  # Good.find(params[:id]) + Good.find(params[:id]).day
+      json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} })
     end
   
     # PUT /Goods/:id
