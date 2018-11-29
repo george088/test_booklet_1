@@ -84,7 +84,7 @@ class GoodsController < ApplicationController
     hh = {}
     hh['from'] = date_from
     hh['to'] = date_to
-    hh['goods'] = items.collect{|x| [x.id, x.title, x.revenue.round(2)] }
+    hh['goods'] = items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2)} }
     sum = 0
     items.collect{|x| sum += x.revenue.round(2)}
 
