@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   include Knock::Authenticable
   
+  def return_unauthorized
+    render status: :unauthorized
+  end
+  
   protected
   
   # Method for checking if current_user is admin or not.
