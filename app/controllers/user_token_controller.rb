@@ -16,6 +16,6 @@ class UserTokenController < Knock::AuthTokenController
 private
 
   def user_token_params_permited
-    params.require(:user).permit(:password, :email)
+    params.require(:user).permit(:password_digest, :email)
   end
 end
