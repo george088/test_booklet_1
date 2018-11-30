@@ -1,6 +1,6 @@
 class UserTokenController < Knock::AuthTokenController
   skip_before_action :verify_authenticity_token
-  
+
   def create
     user = User.new(user_token_params_permited)
     if user.save
@@ -11,6 +11,6 @@ class UserTokenController < Knock::AuthTokenController
 private
 
   def user_token_params_permited
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :email)
   end
 end
