@@ -6,29 +6,29 @@ class ApiGoodsController < ApplicationController
   end
 
   def create
-  @item = Good.create!(good_params_permited)
-  json_response(@item, :created)
+    @item = Good.create!(good_params_permited)
+    json_response(@item, :created)
   end
 
   def show
-  items = Good
-  .left_joins(:day)
-  .where('days.good_id == ?', params[:id])
-  .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
-  hh = {}
-  hh['goods'] =  # Good.find(params[:id]) + Good.find(params[:id]).day
-  json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} })
+    items = Good
+    .left_joins(:day)
+    .where('days.good_id == ?', params[:id])
+    .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
+    hh = {}
+    hh['goods'] =  # Good.find(params[:id]) + Good.find(params[:id]).day
+    json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} })
   end
 
   def update
-  @item.update(good_params_permited)
-  head :no_content
+    @item.update(good_params_permited)
+    head :no_content
   end
 
   def destroy
   # @item.destroy
-  Good.find(params[:id]).destroy
-  json_response("#{params[:id]}, has deen deleted", :deleted)
+    Good.find(params[:id]).destroy
+    json_response("#{params[:id]}, has deen deleted", :deleted)
   end
 
   private
