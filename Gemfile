@@ -59,9 +59,9 @@ group :development do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'rails-controller-testing' 
-  gem 'factory_girl_rails'
-  gem 'database_cleaner'
+  # gem 'rails-controller-testing' 
+  # gem 'factory_girl_rails'
+  # gem 'database_cleaner'
 end
 
 group :test do
@@ -73,9 +73,9 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara', '>= 2.15'
   gem 'shoulda-matchers'
-  gem 'rails-controller-testing' 
-  gem 'factory_girl_rails'
-  gem 'database_cleaner'
+  # gem 'rails-controller-testing' 
+  # gem 'factory_girl_rails'
+  # gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

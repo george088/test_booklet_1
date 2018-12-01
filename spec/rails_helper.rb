@@ -8,7 +8,14 @@ require 'rspec/rails'
 # require 'support/factory_girl'
 # require 'support/session_helper'
 # require 'support/database_cleaner'
-require 'shoulda/matchers' 
+# require 'shoulda/matchers' 
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
