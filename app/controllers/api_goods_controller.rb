@@ -1,18 +1,5 @@
 class ApiGoodsController < ApplicationController
 
-  # before_action :authenticate_user,  only: [:auth]
-
-  # # Public method
-  # def index
-  #   render json: { service: 'auth-api', status: 200 }
-  # end
-  
-  # # Authorized only method
-  # def auth
-  #   render json: { status: 200, msg: "You are currently Logged-in as #{current_user.username}" }
-  # end
-
-
   def index
     @items = Good.all
     json_response(@items)
@@ -28,8 +15,7 @@ class ApiGoodsController < ApplicationController
     .left_joins(:day)
     .where('days.good_id == ?', params[:id])
     .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
-    hh = {}
-    hh['goods'] =  # Good.find(params[:id]) + Good.find(params[:id]).day
+    
     json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} })
   end
 
@@ -39,9 +25,9 @@ class ApiGoodsController < ApplicationController
   end
 
   def destroy
-  # @item.destroy
     Good.find(params[:id]).destroy
-    json_response("#{params[:id]}, has deen deleted", :deleted)
+
+    json_response("Товар с id: #{params[:id]}, удалён", :deleted)
   end
 
   private

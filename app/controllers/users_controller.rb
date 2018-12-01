@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :authorize,          only: [:update]
   
   def index
-    render json: {status: 200, msg: 'Logged-in'}
+    render json: {status: 200, msg: 'Авторизован'}
   end
   
   def current
@@ -17,21 +17,21 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: {status: 200, msg: 'User was created.'}
+      render json: {status: 200, msg: 'Пользователь создан.'}
     end
   end
   
   def update
     user = User.find(params[:id])
     if user.update(user_params)
-      render json: { status: 200, msg: 'User details have been updated.' }
+      render json: { status: 200, msg: 'Данные пользователя обновленны.' }
     end
   end
   
   def destroy
     user = User.find(params[:id])
     if user.destroy
-      render json: { status: 200, msg: 'User has been deleted.' }
+      render json: { status: 200, msg: "Пользователь с id #{params[:id]} удалён." }
     end
   end
   
