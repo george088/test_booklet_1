@@ -8,17 +8,16 @@ describe User, type: :model do
       should validate_presence_of(:email) 
     end
 
-    it 'checking email on uniq' do 
-      should validate_uniqueness_of(:email) 
+    it 'checking email on uniq' d
+      should validate_uniqueness_of(:email)
     end
 
-    it 'checking password validation' do 
-      should validate_presence_of(:password) 
+    it 'checking password validation' do
+      should validate_presence_of(:password)
     end
     
     it "checking default role" do
       expect(User.new.role).to eq 'admin'
     end
-  end
 
 end
