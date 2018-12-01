@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: {status: 200, msg: 'Пользователь создан.'}
+      render json: {status: 200, msg: 'Пользователь создан'}
     end
   end
   

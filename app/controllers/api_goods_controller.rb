@@ -1,5 +1,10 @@
 class ApiGoodsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
+  
+  before_action :authenticate_user,  only: [:index, :update, :current]
+  before_action :authorize_as_admin, only: [:destroy]
+  before_action :authorize,          only: [:update]
+  
   def index
     @items = Good.all
     json_response(@items)
@@ -7,7 +12,7 @@ class ApiGoodsController < ApplicationController
 
   def create
     @item = Good.create!(good_params_permited)
-    json_response(@item, :created)
+    json_response(@item, 'Товар создан')
   end
 
   def show
@@ -16,7 +21,7 @@ class ApiGoodsController < ApplicationController
     .where('days.good_id == ?', params[:id])
     .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
     
-    json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} })
+    json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} }, "Запрос для #{params[:id]} обработан")
   end
 
   def update
@@ -27,7 +32,7 @@ class ApiGoodsController < ApplicationController
   def destroy
     Good.find(params[:id]).destroy
 
-    json_response("Товар с id: #{params[:id]}, удалён", :deleted)
+    json_response("Товар с id: #{params[:id]}, удалён", 'Удаление произошло')
   end
 
   private
@@ -45,9 +50,6 @@ class ApiGoodsController < ApplicationController
   end
 
   def json_response(object, status = :ok)
-    hh = Hash.new()
-    hh['goods'] = object
-    hh['status'] = status
-    render json: hh
+    render json: {'goods' => object, 'status' => status}
   end
 end
