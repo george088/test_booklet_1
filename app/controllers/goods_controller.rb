@@ -53,7 +53,7 @@ class GoodsController < ApplicationController
 
     return json_response_error('Отсутствуют даты', 422) unless (params.has_key?(:from) || params.has_key?(:to))
 
-    return json_response_error('Неверный форма дат', 422) unless (date_validate(params[:from]).nil? || date_validate(params[:to].nil?))
+    return json_response_error('Неверный форма дат', 422) if (date_validate(params[:from]).nil? || date_validate(params[:to].nil?))
 
     date_from = Date.parse(params[:from])
     date_to = Date.parse(params[:to])
@@ -67,7 +67,7 @@ class GoodsController < ApplicationController
     # render json: Good.includes(:day).where(days: {:date => date1..date2})
     
     items = Good
-             .left_joins(:day)
+             .left_joins(:days)
              .where(days: {:date => date_from..date_to})
              .select('goods.id AS id, goods.title AS title, SUM(days.revenue) AS revenue')
              .group('goods.id')
