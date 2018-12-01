@@ -1,13 +1,18 @@
 class ApiGoodsController < ApplicationController
   skip_before_action :verify_authenticity_token
   
-  before_action :authenticate_user,  only: [:index, :update, :current]
+  before_action :authenticate_user,  only: [:index, :update, :current, :show]
   before_action :authorize_as_admin, only: [:destroy]
   before_action :authorize,          only: [:update]
   
   def index
-    @items = Good.all
-    json_response(@items)
+    items = Good
+    .left_joins(:day)
+    .where('days.good_id == goods.id')
+    .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
+
+    # json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} }, 'Выданы все товары')
+    json_response(items, 'Выданы все товары')
   end
 
   def create
@@ -16,12 +21,13 @@ class ApiGoodsController < ApplicationController
   end
 
   def show
-    items = Good
+    item = Good
     .left_joins(:day)
     .where('days.good_id == ?', params[:id])
     .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
     
-    json_response(items.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} }, "Запрос для #{params[:id]} обработан")
+    # json_response(item.collect{|x| {'id' => x.id, 'title' => x.title, 'revenue' => x.revenue.round(2), 'date' => x.date} }, "Запрос для #{params[:id]} обработан")
+    json_response(item, "Запрос для id: #{params[:id]} обработан")
   end
 
   def update
