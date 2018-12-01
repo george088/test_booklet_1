@@ -16,8 +16,8 @@ class ApiGoodsController < ApplicationController
   end
 
   def create
-    @item = Good.create!(good_params_permited)
-    json_response(@item, 'Товар создан')
+    item = Good.create!(good_params_permited)
+    json_response(item, 'Товар создан')
   end
 
   def show

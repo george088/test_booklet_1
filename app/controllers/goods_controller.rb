@@ -50,25 +50,15 @@ class GoodsController < ApplicationController
   end
 
   def api_sales
-    # render json: Good.find(1).day.where(date: '2017-03-01')
-    #"created_at >= ? AND created_at <= ?", start_date, end_date
-    
-    unless date_validate(params[:from]) && date_validate(params[:to])
-      hh = {}
-      hh['status'] = :unprocessable_entity
-      hh['message'] = 'Неверный формат дат'
-      return render json: hh
-    end
+
+    return json_response_error('Отсутствуют даты', 422) unless (params.has_key?(:from) || params.has_key?(:to))
+
+    return json_response_error('Неверный форма дат', 422) unless (date_validate(params[:from]).nil? || date_validate(params[:to].nil?))
 
     date_from = Date.parse(params[:from])
-    date_to = Date.parse(params[:to]) 
+    date_to = Date.parse(params[:to])
 
-    unless !(date_from > date_to )
-      hh = {}
-      hh['status'] = :unprocessable_entity
-      hh['message'] = 'Первая дата должна быть меньше(позже) второй'
-      return render json: hh
-    end
+    return json_response_error('Первая дата должна быть меньше(позже) второй', 422) if date_from > date_to
     # return render json: "sis'ki" unless !(date_from > date_to )
     # работает
     # render json: Good.joins(:day).where(days: {:date => date1..date2})#date: FROM '' TO '2017-03-02'}) #days {date: '2017-03-01'})
@@ -101,5 +91,9 @@ class GoodsController < ApplicationController
 
     def good_params_permited
       params.require(:good).permit(:title)
+    end
+
+    def json_response_error(object, status)
+      render json: {'message' => object, 'status' => status}
     end
 end
