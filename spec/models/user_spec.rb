@@ -8,7 +8,7 @@ describe User, type: :model do
       should validate_presence_of(:email) 
     end
 
-    it 'checking email on uniq' d
+    it 'checking email on uniq' do
       should validate_uniqueness_of(:email)
     end
 
