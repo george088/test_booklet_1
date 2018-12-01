@@ -3,15 +3,21 @@ require "rails_helper"
 describe User, type: :model do
 
   describe 'Setting up model' do
-    it { should validate_presence_of(:email) }
 
-    it { should validate_uniqueness_of(:email) }
+    it 'checking email validation' do 
+      should validate_presence_of(:email) 
+    end
 
-    it { should validate_presence_of(:password) }
+    it 'checking email on uniq' do 
+      should validate_uniqueness_of(:email) 
+    end
 
-    it "check default role" do
-    # User.new(email: 'admin@admin', password: 'sdf')
-      expect(User.new.role).to eq "admin"
+    it 'checking password validation' do 
+      should validate_presence_of(:password) 
+    end
+    
+    it "checking default role" do
+      expect(User.new.role).to eq 'admin'
     end
   end
 
