@@ -55,13 +55,13 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'rspec-rails'
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem 'shoulda-matchers'
-  gem 'rails-controller-testing' 
-  gem 'factory_girl_rails'
-  gem 'database_cleaner'
+  # gem 'rspec-rails'
+  # gem 'capybara', '>= 2.15'
+  # gem 'selenium-webdriver'
+  # gem 'shoulda-matchers'
+  # gem 'rails-controller-testing' 
+  # gem 'factory_girl_rails'
+  # gem 'database_cleaner'
 end
 
 group :test do
