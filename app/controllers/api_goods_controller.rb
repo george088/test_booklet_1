@@ -7,7 +7,7 @@ class ApiGoodsController < ApplicationController
   
   def index
     items = Good
-    .left_joins(:day)
+    .left_joins(:days)
     .where('days.good_id == goods.id')
     .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
 
@@ -22,7 +22,7 @@ class ApiGoodsController < ApplicationController
 
   def show
     item = Good
-    .left_joins(:day)
+    .left_joins(:days)
     .where('days.good_id == ?', params[:id])
     .select('goods.id AS id, goods.title AS title, days.revenue AS revenue, days.date as date')
     

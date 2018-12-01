@@ -38,8 +38,8 @@ spreadsheet = Roo::Spreadsheet.open('app/assets/data/goods.xlsx')
 
   j = 1
   Date.parse('2017-03-01').upto(Date.parse('2017-03-21')) do |date|
-
-    Good.find(i-1).day.create(date: date.to_s, revenue: spreadsheet.row(i)[j])
+    puts "Date: #{date.to_s}; revenue: #{spreadsheet.row(i)[j]}"
+    Good.find(i-1).days.create(date: date.to_s, revenue: spreadsheet.row(i)[j])
     j = j + 1
   end
 end
