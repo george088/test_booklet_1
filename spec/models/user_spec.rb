@@ -19,5 +19,5 @@ describe User, type: :model do
     it "checking default role" do
       expect(User.new.role).to eq 'admin'
     end
-
+  end
 end
