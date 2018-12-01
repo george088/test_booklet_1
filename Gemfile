@@ -76,6 +76,7 @@ group :test do
   # gem 'rails-controller-testing' 
   # gem 'factory_girl_rails'
   # gem 'database_cleaner'
+  gem 'simplecov', require: false, group: :test
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
