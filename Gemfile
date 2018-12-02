@@ -74,8 +74,8 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing' 
-  # gem 'factory_girl_rails'
-  # gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
   gem 'simplecov', require: false, group: :test
 end
 
