@@ -87,7 +87,9 @@ describe GoodsController do
     it "redirect_to item_сreate" do
       # post :create, params: { good: { title: 'created' } }, format: :json
       # response.should redirect_to(@item.find_by(title: 'created'))
-
+      expect{
+        post :create, params: { good: { title: 'created' } }, format: :json
+      }.to change(Good,:count).by(1)
     end
 
     it "render action new if nothing" do
