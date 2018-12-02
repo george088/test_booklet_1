@@ -92,7 +92,15 @@ describe GoodsController do
       }.to change(Good,:count).by(1)
     end
 
-    it "cheking model when not create" do
+    it "redirect_to new item" do
+      # post :create, params: { good: { title: 'created' } }, format: :json
+      # response.should redirect_to(@item.find_by(title: 'created'))
+      expect{
+        post :create, params: { good: { title: 'created' } }, format: :json
+      }.to redirect_to(Good.last)
+    end
+
+    it "cheking model when not create" do # нужно разобраться как передать не валидные данные
       expect{
         post :create, params: { good: { title: '' } }, format: :json
       }.not_to change(Good,:count)
