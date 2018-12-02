@@ -42,7 +42,7 @@ describe GoodsController do
     end
   end
 
-  describe "#update" do
+  describe "#update" do # нужно как-то поменять логику
     item_update = create(:good)
 
     it "redirect_to item_update" do
@@ -51,11 +51,3 @@ describe GoodsController do
     end
   end
 end
-
-# class GoodsControllerTest < ActionController::TestCase
-#   context 'GET #html_sales' do
-#     setup { get :html_sales }
-
-#     should render_template { 'html_sales' }
-#   end
-# end
