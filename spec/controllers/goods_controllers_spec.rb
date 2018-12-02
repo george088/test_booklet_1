@@ -84,7 +84,7 @@ describe GoodsController do
     #   @item.reload
     # end
 
-    it "redirect_to item_сreate" do
+    it "cheking +1 model after create" do
       # post :create, params: { good: { title: 'created' } }, format: :json
       # response.should redirect_to(@item.find_by(title: 'created'))
       expect{
@@ -92,9 +92,10 @@ describe GoodsController do
       }.to change(Good,:count).by(1)
     end
 
-    it "render action new if nothing" do
-      post :create, params: { good: { title: '' } }, format: :json
-      response.should render_template(:new)
+    it "cheking model when not create" do
+      expect{
+        post :create, params: { good: { title: '' } }, format: :json
+      }.not_to change(Good,:count)
     end
   end
 
