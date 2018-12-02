@@ -11,9 +11,17 @@ describe GoodsController do
   describe "#new" do
     it "render new" do
       get :new
-      response.should render_template('new')
+        response.should render_template('new')
     end
   end
+
+  describe "#show" do
+    it "redirect_to goods_path if nothing " do
+      get :show, params: { id: '1' }
+        response.should redirect_to(goods_path)
+    end
+  end
+
 end
 
 # class GoodsControllerTest < ActionController::TestCase
