@@ -85,13 +85,14 @@ describe GoodsController do
     # end
 
     it "redirect_to item_сreate" do
-      get :create, params: {title: 'created', }
-      response.should redirect_to(@item) if @item
+      # post :create, params: { good: { title: 'created' } }, format: :json
+      # response.should redirect_to(@item.find_by(title: 'created'))
+
     end
 
     it "render action new if nothing" do
-      get :create, {good: { title: 'created' } }
-      response.should render_template('new') unless create(:good)
+      post :create, params: { good: { title: '' } }, format: :json
+      response.should render_template(:new)
     end
   end
 
