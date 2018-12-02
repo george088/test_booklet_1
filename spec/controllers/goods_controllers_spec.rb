@@ -16,10 +16,18 @@ describe GoodsController do
   end
 
   describe "#show" do
-    it "redirect_to goods_path if nothing " do
+    it "redirect_to goods_path if nothing" do
       get :show, params: { id: '1' }
         response.should redirect_to(goods_path)
     end
+
+    it "redirect_to goods_path if nothing" do
+      item = create(:good)
+      get :show, params: { id: item.id }
+
+        response.should redirect_to(goods_path)
+    end
+
   end
 
 end
