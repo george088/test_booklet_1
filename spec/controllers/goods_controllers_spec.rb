@@ -42,8 +42,14 @@ describe GoodsController do
     end
   end
 
+  describe "#update" do
+    item_update = create(:good)
 
-
+    it "redirect_to item_update" do
+      get :update, params: { id: item_update.id }
+        response.should redirect_to(item_update)
+    end
+  end
 end
 
 # class GoodsControllerTest < ActionController::TestCase
