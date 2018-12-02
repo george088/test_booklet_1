@@ -4,7 +4,7 @@ describe GoodsController do
   before(:each) do
     @item = create(:good)
   end
-  
+
   describe "#html_sales" do
     it "render html_render" do
       get :html_sales
@@ -26,12 +26,22 @@ describe GoodsController do
     end
 
     it "redirect_to goods_path if nothing" do
+      # item = create(:good)
       get :show, params: { id: @item.id }
       response.should render_template
     end
   end
 
   describe "#edit" do
+    # let(:attr) do 
+    #   { :title => 'new title'}
+    # end
+
+    # before(:each) do
+    #   put :edit, :id => @item.id, :title => attr
+    #   @item.reload
+    # end
+
     it "redirect_to goods_path if nothing" do
       get :edit, params: { id: '0' }
       response.should redirect_to(goods_path)
@@ -44,8 +54,17 @@ describe GoodsController do
   end
 
   describe "#update" do # нужно как-то поменять логику
+    let(:attr) do 
+      { :title => 'new title'}
+    end
+
+    before(:each) do
+      put :update, params: {:id => @item.id, :title => attr}
+      @item.reload
+    end
+
     it "redirect_to item_update" do
-      get :update, params: { id: @item.id, title: 'updated' }
+      get :update, params: { id: @item.id }
       response.should redirect_to(@item)
     end
 
@@ -56,38 +75,48 @@ describe GoodsController do
   end
 
   describe "#сreate" do
+    # let(:attr) do 
+    #   { :title => 'new title'}
+    # end
+
+    # before(:each) do
+    #   put :create, :id => @item.id, :title => attr
+    #   @item.reload
+    # end
+
     it "redirect_to item_сreate" do
-      get :create, params: { id: @item.id }
-      response.should redirect_to(@item)
+      get :create, params: {title: 'created', }
+      response.should redirect_to(@item) if @item
     end
 
     it "render action new if nothing" do
-      get :create
-      response.should render_template('new')
+      get :create, {good: { title: 'created' } }
+      response.should render_template('new') unless create(:good)
     end
   end
 
   describe "#destroy" do
-    it "redirect to goods_path if ok" do
-      get :destroy
-      response.should redirect_to(goods_path) if item_destroy.destroy
-    end
+    # let(:attr) do 
+    #   { :title => 'new title'}
+    # end
 
-    it "redirect to item if not" do
-      get :destroy
-      response.should redirect_to(goods_path) if !item_destroy.destroy
-    end
-  end
+    # before(:each) do
+    #   put :destroy, :id => @item.id, :title => attr
+    #   @item.reload
+    # end
 
-  describe "#api_sales" do
     it "redirect to goods_path if ok" do
-      get :destroy
+      get :destroy, params: {id: @item.id}
       response.should redirect_to(goods_path) if @item.destroy
     end
 
     it "redirect to item if not" do
-      get :destroy
-      response.should redirect_to(goods_path) if !@item.destroy
+      get :destroy, params: {id: @item.id}
+      response.should redirect_to(goods_path) unless @item.destroy
     end
+  end
+
+  describe "#api_sales" do
+
   end
 end
