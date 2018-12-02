@@ -8,6 +8,12 @@ describe GoodsController do
     end
   end
 
+  describe "#new" do
+    it "render new" do
+      get :new
+      response.should render_template('new')
+    end
+  end
 end
 
 # class GoodsControllerTest < ActionController::TestCase
