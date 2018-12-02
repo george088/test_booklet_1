@@ -59,7 +59,7 @@ describe GoodsController do
   describe "#сreate" do
     item_сreate = create(:good)
 
-    it "redirect_to item_update" do
+    it "redirect_to item_сreate" do
       get :create, params: { id: item_сreate.id }
         response.should redirect_to(item_сreate)
     end
@@ -70,12 +70,17 @@ describe GoodsController do
     end
   end
 
-  describe "#desctoy" do
+  describe "#destroy" do
     item_destroy = create(:good)
 
-    it "render action new if nothing" do
-      get :index
-        response.should render_template
+    it "redirect to goods_path if ok" do
+      get :destroy
+        response.should redirect_to(goods_path) if item_destroy.destroy
+    end
+
+    it "redirect to item if not" do
+      get :destroy
+        response.should redirect_to(goods_path) if !item_destroy.destroy
     end
   end
 end
