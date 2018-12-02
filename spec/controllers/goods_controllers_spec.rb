@@ -45,7 +45,7 @@ describe GoodsController do
 
   describe "#update" do # нужно как-то поменять логику
     it "redirect_to item_update" do
-      get :update, params: { id: @item.id }
+      get :update, params: { id: @item.id, title: 'updated' }
       response.should redirect_to(@item)
     end
 
