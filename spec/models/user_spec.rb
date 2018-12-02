@@ -19,5 +19,10 @@ describe User, type: :model do
     it "checking default role" do
       expect(User.new.role).to eq 'admin'
     end
+
+    it "checking secure password" do
+      should have_secure_password
+    end
+    
   end
 end
