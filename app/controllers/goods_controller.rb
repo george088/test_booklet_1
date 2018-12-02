@@ -42,7 +42,9 @@ class GoodsController < ApplicationController
     @item = Good.find(params[:id])
 
     if @item.destroy 
+      redirect_to goods_path
     else
+      redirect_to @item
     end
   end
 
