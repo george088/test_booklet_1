@@ -49,5 +49,24 @@ describe GoodsController do
       get :update, params: { id: item_update.id }
         response.should redirect_to(item_update)
     end
+
+    it "render action edit if nothing" do
+      get :update, params: { id: '0' }
+        response.should render_template('edit')
+    end
+  end
+
+  describe "#сreate" do
+    item_сreate = create(:good)
+
+    it "redirect_to item_update" do
+      get :create, params: { id: item_сreate.id }
+        response.should redirect_to(item_сreate)
+    end
+
+    it "render action new if nothing" do
+      get :create, params: { id: '0' }
+        response.should render_template('new')
+    end
   end
 end
