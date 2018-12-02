@@ -65,8 +65,17 @@ describe GoodsController do
     end
 
     it "render action new if nothing" do
-      get :create, params: { id: '0' }
+      get :create
         response.should render_template('new')
+    end
+  end
+
+  describe "#desctoy" do
+    item_destroy = create(:good)
+
+    it "render action new if nothing" do
+      get :index
+        response.should render_template
     end
   end
 end
