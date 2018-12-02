@@ -32,16 +32,18 @@ describe GoodsController do
     item_edit = create(:good)
 
     it "redirect_to goods_path if nothing" do
-      get :show, params: { id: '0' }
+      get :edit, params: { id: '0' }
         response.should redirect_to(goods_path)
     end
 
     it "redirect_to goods_path if nothing" do
-      
-      get :show, params: { id: item_edit.id }
+      get :edit, params: { id: item_edit.id }
       response.should render_template
     end
   end
+
+
+
 end
 
 # class GoodsControllerTest < ActionController::TestCase
