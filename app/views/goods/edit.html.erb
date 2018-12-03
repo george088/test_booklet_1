@@ -36,7 +36,7 @@
 <hr/>
 
 <ol>
-  <% @item.day.each do |day| %>
+  <% @item.days.each do |day| %>
       Дата: <strong><%= day[:date] %></strong> <br/>
 
       Revenue: <strong><%= day[:revenue] %> </strong> <br/> Создано: <%= day[:created_at] %>

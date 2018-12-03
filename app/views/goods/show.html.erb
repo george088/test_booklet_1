@@ -6,7 +6,7 @@
 <h4> Название товара: <em><%= @item[:title] %> </em> </h4>
 <hr/>
 
-<% if @item.day.size == 0 %>
+<% if @item.days.size == 0 %>
     
 <h5> Добавление даты и revenue </h5>
     <%= form_for([@item, Day.new]) do |f|%>
@@ -30,7 +30,7 @@
 <% else %>
     <h5> Revenue </h5>
     <ol>
-    <% @item.day.each do |day| %>
+    <% @item.days.each do |day| %>
         Дата: <strong><%= day[:date] %></strong> <br/>
 
         Revenue: <strong><%= day[:revenue] %> </strong> <br/> Создано: <%= day[:created_at] %>
