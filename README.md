@@ -1,7 +1,8 @@
 Пример реализации html (CRUD), json и токен авторизации.
 После загрузки репозитория нужно сделать.
-  rails db:migrate
-  rails db:seed
+'''sh
+$  rails db:migrate
+$  rails db:seed
 
 Использование
 html:
