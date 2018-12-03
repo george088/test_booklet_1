@@ -47,6 +47,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
+  def is_admin?
+    role == 'admin'
+  end
+  
   def authorize
     return_unauthorized unless current_user && current_user.can_modify_user?(params[:id])
   end

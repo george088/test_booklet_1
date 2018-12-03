@@ -1,9 +1,9 @@
 class ApiGoodsController < ApplicationController
   skip_before_action :verify_authenticity_token
   
-  before_action :authenticate_user,  only: [:index, :update, :current, :show]
-  before_action :authorize_as_admin, only: [:destroy]
-  before_action :authorize,          only: [:update]
+  before_action :authenticate_user,  only: [:index, :update, :current, :show, :destroy, :update]
+  # before_action :authorize_as_admin, only: [:destroy]
+  # before_action :authorize,          only: [:update]
   
   def index
     items = Good
@@ -16,11 +16,13 @@ class ApiGoodsController < ApplicationController
   end
 
   def create
-    item = Good.create!(good_params_permited)
+    item = Good.create(good_params_permited)
     json_response(item, 'Товар создан')
   end
 
   def show
+    return json_response("Товара удалён или не существует", "Запрос для id: #{params[:id]} обработан") unless Good.exists?(params[:id])
+    
     item = Good
     .left_joins(:days)
     .where('days.good_id == ?', params[:id])
@@ -31,8 +33,9 @@ class ApiGoodsController < ApplicationController
   end
 
   def update
+    return json_response("Товара удалён или не существует", "Запрос для id: #{params[:id]} обработан") unless Good.exists?(params[:id])
+
     @item.update(good_params_permited)
-    head :no_content
   end
 
   def destroy
