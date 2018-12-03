@@ -8,7 +8,7 @@ $ rails db:migrate
 $ rails db:seed
 ```
 
-##### Линки
+### Линки
 
 Для доступа по html
 
