@@ -54,22 +54,31 @@ describe GoodsController do
   end
 
   describe "#update" do # нужно как-то поменять логику
-    let(:attr) do 
-      { :title => 'new title'}
-    end
-
     before(:each) do
-      put :update, params: {:id => @item.id, :title => attr}
-      @item.reload
+      @item_update = create(:good)
     end
 
     it "redirect_to item_update" do
-      get :update, params: { id: @item.id }
-      response.should redirect_to(@item)
+      put :update, params: { good: {id: 1, title: 'updated'} }, format: :json
+      response.should redirect_to(assigns(:item))
     end
 
+    it "redirect_to item_update v2" do
+      expect{
+        put :update, params: { id: 1, title: 'updated' }, format: :json
+      }.not_to change(Good,:count)
+    end
+
+    it "redirect_to item_update v3" do
+      visit edit_good_path(@item_update)
+
+      fill_in "story_title", with: "React"
+      fill_in "story_content", with: "Text about React"
+    end
+
+
     it "render action edit if nothing" do
-      get :update, params: { id: '0' }
+      put :update, params: { id: '0' }
       response.should render_template('edit')
     end
   end
